@@ -1,12 +1,17 @@
 <template>
-  <div class="user-profile-picture-wrapper">
+  <div class="user-profile-picture-wrapper" v-if="isSignedIn">
     <img src="@/assets/user-profile.png" class="image-cover" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "UserProfileImage"
+  name: "UserProfileImage",
+  computed: {
+    isSignedIn: function() {
+      return this.$store.state.user !== undefined;
+    }
+  }
 };
 </script>
 
