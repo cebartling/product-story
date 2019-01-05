@@ -5,7 +5,7 @@
     <!--<router-link to="/">Home</router-link> |-->
     <!--<router-link to="/about">About</router-link>-->
     <!--</div>-->
-    <router-view />
+    <div id="app-content"><router-view /></div>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   padding: 0;
 }
@@ -30,6 +30,9 @@ body {
       color: #42b983;
     }
   }
+}
+#app-content {
+  padding: 10px;
 }
 </style>
 <script>
