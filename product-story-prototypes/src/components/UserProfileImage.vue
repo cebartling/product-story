@@ -8,7 +8,7 @@
 export default {
   name: "UserProfileImage",
   computed: {
-    isSignedIn: () => {
+    isSignedIn: function() {
       return this.$store.state.user !== undefined;
     }
   }
