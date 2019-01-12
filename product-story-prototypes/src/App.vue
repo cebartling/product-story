@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <AppHeader></AppHeader>
-    <router-view></router-view>
+    <v-fade-transition mode="out-in" appear="true">
+      <router-view></router-view>
+    </v-fade-transition>
     <AppFooter></AppFooter>
   </v-app>
 </template>

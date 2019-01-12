@@ -6,19 +6,21 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <!--<v-btn flat>Link One</v-btn>-->
-      <!--<v-btn flat>Link Two</v-btn>-->
-      <!--<v-btn flat>Link Three</v-btn>-->
-      <UserProfileImage></UserProfileImage>
+      <v-btn flat to="/">Welcome</v-btn>
+      <v-btn flat to="/home">Home</v-btn>
+      <v-btn flat to="/kanbanBoard">Kanban Board</v-btn>
+      <v-btn flat to="/about">About</v-btn>
+      <!--<UserProfileImage></UserProfileImage>-->
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
-import UserProfileImage from "./UserProfileImage";
+// import UserProfileImage from "@/components/UserProfileImage";
+
 export default {
   name: "AppHeader",
-  components: { UserProfileImage }
+  components: {}
 };
 </script>
 

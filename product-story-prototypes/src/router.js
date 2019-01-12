@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import FrontDoor from "@/views/FrontDoor";
+import KanbanBoard from "@/views/KanbanBoard";
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ export default new Router({
       path: "/home",
       name: "home",
       component: Home
+    },
+    {
+      path: "/kanbanBoard",
+      name: "kanbanBoard",
+      component: KanbanBoard
     },
     {
       path: "/about",
