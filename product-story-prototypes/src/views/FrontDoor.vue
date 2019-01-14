@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     signIn() {
-      this.$store.dispatch("signInWithGoogle", {});
+      this.$store.dispatch("common/signInWithGoogle", {});
     }
   }
 };
