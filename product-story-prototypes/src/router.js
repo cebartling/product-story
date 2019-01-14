@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import FrontDoor from "@/views/FrontDoor";
 import KanbanBoard from "@/views/KanbanBoard";
+import UserStoryMap from "@/views/UserStoryMap";
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: "/kanbanBoard",
       name: "kanbanBoard",
       component: KanbanBoard
+    },
+    {
+      path: "/userStoryMap",
+      name: "userStoryMap",
+      component: UserStoryMap
     },
     {
       path: "/about",
