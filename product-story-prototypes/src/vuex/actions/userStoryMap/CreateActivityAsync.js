@@ -1,22 +1,13 @@
-// import firebase from "firebase/app";
-import "firebase/firestore";
+import { firestore } from "@/Firebase";
 
-const createActivityAsync = async (/*{ commit }*/) => {
+const createActivityAsync = async (_, payload) => {
   try {
-    // const provider = new firebase.auth.GoogleAuthProvider();
-    // const result = await firebase.auth().signInWithPopup(provider);
-    // const {
-    //   user,
-    //   credential: { accessToken }
-    // } = result;
-    // commit("setAccessToken", { accessToken });
-    // commit("setUser", { user });
-    // router.push("/home");
+    const data = { activity: payload.activity };
+    const collection = firestore().collection("user_story_maps");
+    const documentRef = await collection.add(data);
+    // eslint-disable-next-line no-console
+    console.info(`Created activity: ${documentRef.id}`);
   } catch (error) {
-    // // const {code, message, credential, email} = error;
-    // commit("setUser", { user: undefined });
-    // commit("setAccessToken", { accessToken: undefined });
-
     // eslint-disable-next-line no-console
     console.error(error);
   }

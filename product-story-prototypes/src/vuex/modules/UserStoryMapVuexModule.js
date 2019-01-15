@@ -1,7 +1,11 @@
+import createActivityAsync from "@/vuex/actions/userStoryMap/CreateActivityAsync";
+
 const namespaced = true;
 const state = {};
 const mutations = {};
-const actions = {};
+const actions = {
+  createActivity: createActivityAsync
+};
 const getters = {};
 
 const userStoryVuexModule = {

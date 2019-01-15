@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <AppHeader></AppHeader>
-    <v-fade-transition mode="out-in" appear="true">
+    <v-fade-transition mode="out-in">
       <router-view></router-view>
     </v-fade-transition>
     <AppFooter></AppFooter>

@@ -9,20 +9,27 @@
         </v-card-title>
 
         <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <v-form v-model="valid">
+            <v-container>
+              <v-layout>
+                <v-flex xs12 md12>
+                  <v-text-field
+                    v-model="activity"
+                    label="Activity"
+                    required
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-form>
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="dialog = false"> Save </v-btn>
+          <v-btn color="secondary" flat @click="onClickCancel"> Cancel </v-btn>
+          <v-btn color="primary" flat @click="onClickSave"> Save </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -34,8 +41,21 @@ export default {
   name: "CreateActivityDialog",
   data() {
     return {
-      dialog: false
+      dialog: false,
+      valid: false,
+      activity: undefined
     };
+  },
+  methods: {
+    onClickCancel: function() {
+      this.dialog = false;
+    },
+    onClickSave: function() {
+      this.dialog = false;
+      this.$store.dispatch("userStoryMap/createActivity", {
+        activity: this.activity
+      });
+    }
   }
 };
 </script>
