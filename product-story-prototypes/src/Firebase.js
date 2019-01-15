@@ -7,3 +7,7 @@ export const firestore = () => {
   firestore.settings(settings);
   return firestore;
 };
+
+export const firestoreServerTimestamp = () => {
+  return firebase.firestore.FieldValue.serverTimestamp();
+};
