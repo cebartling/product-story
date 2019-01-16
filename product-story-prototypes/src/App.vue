@@ -25,3 +25,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.toasted-message {
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: bold !important;
+  color: #fff !important;
+}
+</style>

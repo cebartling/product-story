@@ -4,6 +4,7 @@ import App from "@/App.vue";
 import router from "@/router";
 import store from "@/vuex/store";
 import firebase from "firebase/app";
+import "@/toasted";
 
 Vue.config.productionTip = false;
 
