@@ -5,6 +5,10 @@
         <v-combobox
           v-model="selectedMap"
           :items="availableUserStoryMaps"
+          item-text="name"
+          item-value="id"
+          persistent-hint
+          return-object
           label="Select an existing user story map to work with"
         ></v-combobox>
       </v-flex>
@@ -16,11 +20,29 @@
 export default {
   name: "UserStoryMapPicker",
   data() {
-    return {
-      selectedMap: "Programming",
-      availableUserStoryMaps: ["Programming", "Design", "Vue", "Vuetify"]
-    };
-  }
+    return {};
+  },
+  computed: {
+    availableUserStoryMaps: {
+      get() {
+        return this.$store.state.userStoryMap.userStoryMaps;
+      }
+    },
+    selectedMap: {
+      get() {
+        return this.$store.state.userStoryMap.selectedUserStoryMap;
+      },
+      set(value) {
+        this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
+          selectedUserStoryMap: value
+        });
+      }
+    }
+  },
+  mounted: function() {
+    this.$store.dispatch("userStoryMap/retrieveUserStoryMaps");
+  },
+  methods: {}
 };
 </script>
 
