@@ -2,27 +2,30 @@
   <v-content>
     <v-container fluid grid-list-md text-xs-left>
       <v-layout row wrap>
-        <v-flex xs4>
-          <CreateUserStoryMapDialog></CreateUserStoryMapDialog>
+        <v-flex xs11> </v-flex>
+        <v-flex xs1>
+          <v-menu offset-y>
+            <v-btn slot="activator" color="primary"> Actions </v-btn>
+            <v-list>
+              <CreateUserStoryMapDialog></CreateUserStoryMapDialog>
+              <OpenUserStoryMapDialog></OpenUserStoryMapDialog>
+            </v-list>
+          </v-menu>
         </v-flex>
-        <v-flex xs8> <UserStoryMapPicker></UserStoryMapPicker> </v-flex>
       </v-layout>
-      <v-layout row wrap>
-        <!--<v-flex xs12> <CreateActivityDialog></CreateActivityDialog> </v-flex>-->
-      </v-layout>
+      <v-layout row wrap> </v-layout>
     </v-container>
   </v-content>
 </template>
 
 <script>
-// import CreateActivityDialog from "@/components/userStoryMap/CreateActivityDialog";
-import CreateUserStoryMapDialog from "../components/userStoryMap/CreateUserStoryMapDialog";
-import UserStoryMapPicker from "../components/userStoryMap/UserStoryMapPicker";
+import CreateUserStoryMapDialog from "@/components/userStoryMap/CreateUserStoryMapDialog";
+import OpenUserStoryMapDialog from "@/components/userStoryMap/OpenUserStoryMapDialog";
 
 export default {
   name: "UserStoryMap",
   components: {
-    UserStoryMapPicker,
+    OpenUserStoryMapDialog,
     CreateUserStoryMapDialog
   },
   methods: {}

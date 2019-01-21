@@ -24,15 +24,15 @@ export default {
   },
   computed: {
     availableUserStoryMaps: {
-      get() {
+      get: function() {
         return this.$store.state.userStoryMap.userStoryMaps;
       }
     },
     selectedMap: {
-      get() {
+      get: function() {
         return this.$store.state.userStoryMap.selectedUserStoryMap;
       },
-      set(value) {
+      set: function(value) {
         this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
           selectedUserStoryMap: value
         });
