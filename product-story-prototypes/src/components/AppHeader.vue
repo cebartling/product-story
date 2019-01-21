@@ -6,7 +6,7 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat to="/" v-if="!userSignedIn">Welcome</v-btn>
+      <v-btn flat @click="signIn" v-if="!userSignedIn">Sign In</v-btn>
       <v-btn flat to="/home" v-if="userSignedIn">Home</v-btn>
       <v-btn flat to="/userStoryMap" v-if="userSignedIn">User Story Map</v-btn>
       <v-btn flat to="/kanbanBoard" v-if="userSignedIn">Kanban Board</v-btn>
@@ -27,6 +27,11 @@ export default {
       get: function() {
         return this.$store.state.common.user !== undefined;
       }
+    }
+  },
+  methods: {
+    signIn() {
+      this.$store.dispatch("common/signInWithGoogle");
     }
   }
 };

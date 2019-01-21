@@ -5,6 +5,9 @@
         <img src="@/assets/user-profile.png" alt="Avatar" />
       </v-avatar>
       <v-list>
+        <v-list-tile to="/profile">
+          <v-list-tile-title>Profile</v-list-tile-title>
+        </v-list-tile>
         <v-list-tile @click="signOff">
           <v-list-tile-title>Sign off</v-list-tile-title>
         </v-list-tile>
