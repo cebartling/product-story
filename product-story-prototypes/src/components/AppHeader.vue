@@ -6,12 +6,12 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat to="/">Welcome</v-btn>
-      <v-btn flat to="/home">Home</v-btn>
-      <v-btn flat to="/userStoryMap">User Story Map</v-btn>
-      <v-btn flat to="/kanbanBoard">Kanban Board</v-btn>
+      <v-btn flat to="/" v-if="!userSignedIn">Welcome</v-btn>
+      <v-btn flat to="/home" v-if="userSignedIn">Home</v-btn>
+      <v-btn flat to="/userStoryMap" v-if="userSignedIn">User Story Map</v-btn>
+      <v-btn flat to="/kanbanBoard" v-if="userSignedIn">Kanban Board</v-btn>
       <v-btn flat to="/about">About</v-btn>
-      <UserProfileImage></UserProfileImage>
+      <UserProfileImage v-if="userSignedIn"></UserProfileImage>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -21,7 +21,14 @@ import UserProfileImage from "@/components/UserProfileImage";
 
 export default {
   name: "AppHeader",
-  components: { UserProfileImage }
+  components: { UserProfileImage },
+  computed: {
+    userSignedIn: {
+      get: function() {
+        return this.$store.state.common.user !== undefined;
+      }
+    }
+  }
 };
 </script>
 

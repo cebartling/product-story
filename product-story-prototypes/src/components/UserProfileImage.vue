@@ -1,15 +1,25 @@
 <template>
-  <v-avatar slot="activator" size="50px" class="avatar" v-if="isSignedIn">
-    <img src="@/assets/user-profile.png" alt="Avatar" />
-  </v-avatar>
+  <div class="text-xs-center">
+    <v-menu offset-y>
+      <v-avatar slot="activator" size="50px" class="avatar">
+        <img src="@/assets/user-profile.png" alt="Avatar" />
+      </v-avatar>
+      <v-list>
+        <v-list-tile @click="signOff">
+          <v-list-tile-title>Sign off</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+  </div>
 </template>
 
 <script>
 export default {
   name: "UserProfileImage",
-  computed: {
-    isSignedIn: function() {
-      return this.$store.state.user !== undefined;
+  computed: {},
+  methods: {
+    signOff: function() {
+      this.$store.dispatch("common/signOff");
     }
   }
 };

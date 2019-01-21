@@ -1,4 +1,5 @@
 import signInWithGoogleAsync from "@/vuex/actions/common/SignInWithGoogleAsync";
+import signOffAsync from "@/vuex/actions/common/SignOffAsync";
 
 const namespaced = true;
 const state = {
@@ -14,7 +15,8 @@ const mutations = {
   }
 };
 const actions = {
-  signInWithGoogle: signInWithGoogleAsync
+  signInWithGoogle: signInWithGoogleAsync,
+  signOff: signOffAsync
 };
 const getters = {};
 
