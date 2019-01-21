@@ -1,6 +1,6 @@
 <template>
   <div class="text-xs-center">
-    <v-menu offset-y>
+    <v-menu offset-y nudge-left="20">
       <v-avatar slot="activator" size="50px" class="avatar">
         <img src="@/assets/user-profile.png" alt="Avatar" />
       </v-avatar>

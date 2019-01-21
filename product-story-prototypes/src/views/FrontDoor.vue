@@ -4,7 +4,9 @@
       <v-layout row wrap>
         <v-flex xs12> <h1>Welcome to ProductStory</h1> </v-flex>
         <v-flex xs12>
-          <v-btn @click="signIn" v-if="!userSignedIn">Sign in with Google</v-btn>
+          <v-btn @click="signIn" v-if="!userSignedIn">
+            Sign in with Google
+          </v-btn>
         </v-flex>
       </v-layout>
     </v-container>
