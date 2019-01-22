@@ -1,9 +1,5 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-list-tile slot="activator">
-      <v-list-tile-title>Open</v-list-tile-title>
-    </v-list-tile>
-
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
         Open User Story Map
@@ -44,9 +40,11 @@
 <script>
 export default {
   name: "OpenUserStoryMapDialog",
+  props: {
+    dialog: Boolean
+  },
   data() {
     return {
-      dialog: false,
       valid: false,
       name: undefined
     };
@@ -73,10 +71,10 @@ export default {
   },
   methods: {
     onClickCancel: function() {
-      this.dialog = false;
+      this.$emit("update:openDialog", false);
     },
     onClickOpen: function() {
-      this.dialog = false;
+      this.$emit("update:openDialog", false);
     }
   }
 };

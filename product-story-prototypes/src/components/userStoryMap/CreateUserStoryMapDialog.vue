@@ -1,9 +1,5 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-list-tile slot="activator">
-      <v-list-tile-title>Create</v-list-tile-title>
-    </v-list-tile>
-
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
         Create User Story Map
@@ -39,19 +35,21 @@
 <script>
 export default {
   name: "CreateUserStoryMapDialog",
+  props: {
+    dialog: Boolean
+  },
   data() {
     return {
-      dialog: false,
       valid: false,
       name: undefined
     };
   },
   methods: {
     onClickCancel: function() {
-      this.dialog = false;
+      this.$emit("update:createDialog", false);
     },
     onClickSave: function() {
-      this.dialog = false;
+      this.$emit("update:createDialog", false);
       this.$store.dispatch("userStoryMap/createUserStoryMap", {
         name: this.name
       });
