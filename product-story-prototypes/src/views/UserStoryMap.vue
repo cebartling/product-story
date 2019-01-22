@@ -2,15 +2,17 @@
   <v-content>
     <v-container fluid grid-list-md text-xs-left>
       <v-layout row wrap>
-        <v-flex xs11> </v-flex>
+        <v-flex xs11></v-flex>
         <v-flex xs1>
           <v-menu offset-y>
-            <v-btn slot="activator" color="primary"> Actions </v-btn>
+            <v-btn flat icon color="blue" slot="activator">
+              <v-icon>more_vert</v-icon>
+            </v-btn>
             <v-list>
-              <v-list-tile @click="createDialog = true">
+              <v-list-tile @click="dialogState.createDialog = true">
                 <v-list-tile-title>Create</v-list-tile-title>
               </v-list-tile>
-              <v-list-tile @click="openDialog = true">
+              <v-list-tile @click="dialogState.openDialog = true">
                 <v-list-tile-title>Open</v-list-tile-title>
               </v-list-tile>
             </v-list>
@@ -19,12 +21,12 @@
       </v-layout>
       <v-layout row wrap>
         <CreateUserStoryMapDialog
-          :dialog="createDialog"
-          v-on:update:createDialog="onUpdateCreateDialog($event)"
+          :dialog="dialogState.createDialog"
+          v-bind.sync="dialogState"
         ></CreateUserStoryMapDialog>
         <OpenUserStoryMapDialog
-          :dialog="openDialog"
-          v-on:update:openDialog="onUpdateOpenDialog($event)"
+          :dialog="dialogState.openDialog"
+          v-bind.sync="dialogState"
         ></OpenUserStoryMapDialog>
       </v-layout>
     </v-container>
@@ -43,18 +45,13 @@ export default {
   },
   data() {
     return {
-      createDialog: false,
-      openDialog: false
+      dialogState: {
+        createDialog: false,
+        openDialog: false
+      }
     };
   },
-  methods: {
-    onUpdateCreateDialog: function(event) {
-      this.createDialog = event;
-    },
-    onUpdateOpenDialog: function(event) {
-      this.openDialog = event;
-    }
-  }
+  methods: {}
 };
 </script>
 
