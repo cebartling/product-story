@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { firestore, firestoreServerTimestamp } from "@/Firebase";
 
-const createUserStoryMapAsync = async (_, payload) => {
+const createUserStoryMapAsync = async (context, payload) => {
   try {
     const data = {
       name: payload.name,
@@ -9,7 +9,9 @@ const createUserStoryMapAsync = async (_, payload) => {
       createdAt: firestoreServerTimestamp(),
       updatedAt: firestoreServerTimestamp()
     };
-    const collection = firestore().collection("userStoryMaps");
+    const { uid } = context.rootState.common.user;
+    const collectionPath = `users/${uid}/userStoryMaps`;
+    const collection = firestore().collection(collectionPath);
     const userStoryMapDocument = await collection.add(data);
     // eslint-disable-next-line no-console
     console.info(`Created UserStoryMap: ${userStoryMapDocument.id}`);

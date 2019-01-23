@@ -10,7 +10,7 @@
       <v-btn flat to="/home" v-if="userSignedIn">Home</v-btn>
       <v-btn flat to="/userStoryMap" v-if="userSignedIn">User Story Map</v-btn>
       <v-btn flat to="/kanbanBoard" v-if="userSignedIn">Kanban Board</v-btn>
-      <v-btn flat to="/about">About</v-btn>
+      <v-btn flat to="/about" v-if="userSignedIn">About</v-btn>
       <UserProfileImage v-if="userSignedIn"></UserProfileImage>
     </v-toolbar-items>
   </v-toolbar>

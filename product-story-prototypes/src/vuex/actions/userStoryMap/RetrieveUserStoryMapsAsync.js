@@ -1,10 +1,12 @@
 import Vue from "vue";
-import { COLLECTION_USER_STORY_MAPS, firestore } from "@/Firebase";
+import { firestore } from "@/Firebase";
 
-const retrieveUserStoryMapsAsync = async ({ commit }) => {
+const retrieveUserStoryMapsAsync = async context => {
+  const { uid } = context.rootState.common.user;
+  const collectionPath = `users/${uid}/userStoryMaps`;
   try {
     const querySnapshot = await firestore()
-      .collection(COLLECTION_USER_STORY_MAPS)
+      .collection(collectionPath)
       .get();
     const userStoryMaps = [];
     querySnapshot.forEach(doc => {
@@ -12,7 +14,7 @@ const retrieveUserStoryMapsAsync = async ({ commit }) => {
       const id = doc.id;
       userStoryMaps.push({ id, ...data });
     });
-    commit("setUserStoryMaps", { userStoryMaps });
+    context.commit("setUserStoryMaps", { userStoryMaps });
   } catch (error) {
     console.error(error);
     Vue.toasted.error(`Unable to retrieve user story maps!`);

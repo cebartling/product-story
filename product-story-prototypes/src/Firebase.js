@@ -11,5 +11,3 @@ export const firestore = () => {
 export const firestoreServerTimestamp = () => {
   return firebase.firestore.FieldValue.serverTimestamp();
 };
-
-export const COLLECTION_USER_STORY_MAPS = "userStoryMaps";
