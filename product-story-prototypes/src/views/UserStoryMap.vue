@@ -2,7 +2,9 @@
   <v-content>
     <v-container fluid grid-list-md text-xs-left>
       <v-layout row wrap>
-        <v-flex xs11></v-flex>
+        <v-flex xs11>
+          <h1>{{ name }}</h1>
+        </v-flex>
         <v-flex xs1>
           <v-menu offset-y>
             <v-btn flat icon color="blue" slot="activator">
@@ -50,6 +52,15 @@ export default {
         openDialog: false
       }
     };
+  },
+  computed: {
+    name: function() {
+      let name = "";
+      if (this.$store.state.userStoryMap.selectedUserStoryMap) {
+        name = this.$store.state.userStoryMap.selectedUserStoryMap.name;
+      }
+      return name;
+    }
   },
   methods: {}
 };
