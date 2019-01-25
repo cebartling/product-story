@@ -17,6 +17,14 @@
             </v-list>
           </v-menu>
           <span class="user-story-map-name">{{ name }}</span>
+          <v-btn
+            flat
+            icon
+            color="blue"
+            v-if="this.$store.state.userStoryMap.selectedUserStoryMap"
+          >
+            <v-icon>add</v-icon>
+          </v-btn>
         </v-flex>
       </v-layout>
       <UserStoryMapCanvas v-if="selectedUserStoryMap"></UserStoryMapCanvas>
