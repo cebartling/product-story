@@ -1,9 +1,15 @@
 import { firestore } from "@/Firebase";
 
-const createActivityAsync = async (_, payload) => {
+const createActivityAsync = async (context, payload) => {
   try {
     const data = { activity: payload.activity };
-    const collection = firestore().collection("user_story_maps");
+    const { uid } = context.rootState.common.user;
+
+    const collectionPath = `users/${uid}/userStoryMaps/${
+      payload.userStoryMapId
+    }/activities`;
+
+    const collection = firestore().collection(collectionPath);
     const documentRef = await collection.add(data);
     // eslint-disable-next-line no-console
     console.info(`Created activity: ${documentRef.id}`);

@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      selectedMap: undefined,
       valid: false,
       name: undefined
     };
@@ -53,16 +54,6 @@ export default {
     availableUserStoryMaps: {
       get: function() {
         return this.$store.state.userStoryMap.userStoryMaps;
-      }
-    },
-    selectedMap: {
-      get: function() {
-        return this.$store.state.userStoryMap.selectedUserStoryMap;
-      },
-      set: function(value) {
-        this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
-          selectedUserStoryMap: value
-        });
       }
     }
   },
@@ -74,6 +65,9 @@ export default {
       this.$emit("update:openDialog", false);
     },
     onClickOpen: function() {
+      this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
+        selectedUserStoryMap: this.selectedMap
+      });
       this.$emit("update:openDialog", false);
     }
   }

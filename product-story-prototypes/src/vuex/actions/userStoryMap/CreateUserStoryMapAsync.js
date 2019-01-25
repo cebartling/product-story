@@ -5,7 +5,6 @@ const createUserStoryMapAsync = async (context, payload) => {
   try {
     const data = {
       name: payload.name,
-      activities: [],
       createdAt: firestoreServerTimestamp(),
       updatedAt: firestoreServerTimestamp()
     };

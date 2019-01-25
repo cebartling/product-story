@@ -1,8 +1,6 @@
 <template>
   <div class="text-xs-left">
     <v-dialog v-model="dialog" width="500">
-      <v-btn slot="activator" color="success" dark> Create Activity </v-btn>
-
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Create Activity
@@ -39,22 +37,25 @@
 <script>
 export default {
   name: "CreateActivityDialog",
+  props: {
+    dialog: Boolean
+  },
   data() {
     return {
-      dialog: false,
       valid: false,
       activity: undefined
     };
   },
   methods: {
     onClickCancel: function() {
-      this.dialog = false;
+      this.$emit("update:createActivityDialog", false);
     },
     onClickSave: function() {
-      this.dialog = false;
       this.$store.dispatch("userStoryMap/createActivity", {
+        userStoryMapId: this.$store.state.userStoryMap.selectedUserStoryMap.id,
         activity: this.activity
       });
+      this.$emit("update:createActivityDialog", false);
     }
   }
 };
