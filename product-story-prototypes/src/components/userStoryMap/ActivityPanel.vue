@@ -1,30 +1,15 @@
 <template>
   <v-layout row nowrap pa-2>
-    <v-flex
-      xs2
-      class="new-item activity"
-      @click="dialogState.createActivityDialog = true"
-    >
-      <CreateActivityDialog
-        :dialog="dialogState.createActivityDialog"
-        v-bind.sync="dialogState"
-      ></CreateActivityDialog>
-    </v-flex>
+    <v-flex xs2 class="new-item activity"> </v-flex>
   </v-layout>
 </template>
 
 <script>
-import CreateActivityDialog from "@/components/userStoryMap/CreateActivityDialog";
-
 export default {
   name: "ActivityPanel",
-  components: { CreateActivityDialog },
+  components: {},
   data() {
-    return {
-      dialogState: {
-        createActivityDialog: false
-      }
-    };
+    return {};
   },
   methods: {}
 };
