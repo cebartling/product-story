@@ -1,3 +1,4 @@
+import Vue from "vue";
 import { firestore } from "@/Firebase";
 
 const createActivityAsync = async (context, payload) => {
@@ -11,11 +12,13 @@ const createActivityAsync = async (context, payload) => {
 
     const collection = firestore().collection(collectionPath);
     const documentRef = await collection.add(data);
-    // eslint-disable-next-line no-console
     console.info(`Created activity: ${documentRef.id}`);
+    Vue.toasted.success(
+      `Successfully created activity named '${payload.activity}'!`
+    );
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error);
+    Vue.toasted.error(`Unable to create activity named '${payload.activity}'!`);
   }
 };
 
