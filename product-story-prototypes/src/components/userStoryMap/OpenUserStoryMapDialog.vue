@@ -68,6 +68,9 @@ export default {
       this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
         selectedUserStoryMap: this.selectedMap
       });
+      this.$store.dispatch("userStoryMap/startObservingUserStoryMap", {
+        userStoryMapId: this.selectedMap.id
+      });
       this.$emit("update:openDialog", false);
     }
   }

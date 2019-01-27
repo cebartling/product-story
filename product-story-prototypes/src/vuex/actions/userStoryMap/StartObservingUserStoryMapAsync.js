@@ -1,25 +1,22 @@
 import { firestore } from "@/Firebase";
-import Vue from "vue/types/vue";
+import Vue from "vue";
 
-const userStoryMapObserver = (context, payload) => {
+const startObservingUserStoryMapAsync = async (context, payload) => {
   try {
     const { uid } = context.rootState.common.user;
     const collectionPath = `users/${uid}/userStoryMaps`;
     const collection = firestore().collection(collectionPath);
     const document = collection.doc(payload.userStoryMapId);
-    const unsubscribeFunction = document.onSnapshot(function(doc) {
+    const unsubscribeFunction = document.onSnapshot(doc => {
       // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
       Vue.toasted.info(`User story map document ${doc.id} was changed.`);
     });
-    context.commit("userStoryMap/setSelectedUserStoryMapDocument", {
+    context.commit("setSelectedUserStoryMapDocument", {
       selectedUserStoryMapDocument: document
     });
-    context.commit(
-      "userStoryMap/setSelectedUserStoryMapDocumentUnsubscribeFunction",
-      {
-        selectedUserStoryMapDocumentUnsubscribeFunction: unsubscribeFunction
-      }
-    );
+    context.commit("setSelectedUserStoryMapDocumentUnsubscribeFunction", {
+      selectedUserStoryMapDocumentUnsubscribeFunction: unsubscribeFunction
+    });
   } catch (error) {
     console.error(error);
     Vue.toasted.error(
@@ -30,4 +27,4 @@ const userStoryMapObserver = (context, payload) => {
   }
 };
 
-export default userStoryMapObserver;
+export default startObservingUserStoryMapAsync;
