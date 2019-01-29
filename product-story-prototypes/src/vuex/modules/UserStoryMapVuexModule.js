@@ -3,28 +3,20 @@ import createUserStoryMapAsync from "@/vuex/actions/userStoryMap/CreateUserStory
 import retrieveUserStoryMapsAsync from "@/vuex/actions/userStoryMap/RetrieveUserStoryMapsAsync";
 import setUserStoryMapMutation from "@/vuex/mutations/userStoryMap/SetUserStoryMapsMutation";
 import setSelectedUserStoryMapMutation from "@/vuex/mutations/userStoryMap/SetSelectedUserStoryMapMutation";
-import setSelectedUserStoryMapDocumentMutation from "@/vuex/mutations/userStoryMap/SetSelectedUserStoryMapDocumentMutation";
-import setSelectedUserStoryMapDocumentUnsubscribeFunctionMutation from "@/vuex/mutations/userStoryMap/SetSelectedUserStoryMapDocumentUnsubscribeFunction";
-import startObservingUserStoryMapAsync from "@/vuex/actions/userStoryMap/StartObservingUserStoryMapAsync";
 
 const namespaced = true;
 const state = {
   userStoryMaps: [],
-  selectedUserStoryMap: undefined,
-  selectedUserStoryMapDocument: undefined,
-  selectedUserStoryMapDocumentUnsubscribeFunction: undefined
+  selectedUserStoryMap: undefined
 };
 const mutations = {
   setUserStoryMaps: setUserStoryMapMutation,
-  setSelectedUserStoryMap: setSelectedUserStoryMapMutation,
-  setSelectedUserStoryMapDocument: setSelectedUserStoryMapDocumentMutation,
-  setSelectedUserStoryMapDocumentUnsubscribeFunction: setSelectedUserStoryMapDocumentUnsubscribeFunctionMutation
+  setSelectedUserStoryMap: setSelectedUserStoryMapMutation
 };
 const actions = {
   createUserStoryMap: createUserStoryMapAsync,
   createActivity: createActivityAsync,
-  retrieveUserStoryMaps: retrieveUserStoryMapsAsync,
-  startObservingUserStoryMap: startObservingUserStoryMapAsync
+  retrieveUserStoryMaps: retrieveUserStoryMapsAsync
 };
 const getters = {};
 

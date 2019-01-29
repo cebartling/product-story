@@ -16,9 +16,6 @@ const createUserStoryMapAsync = async (context, payload) => {
     Vue.toasted.success(
       `Successfully created user story map named '${payload.name}'!`
     );
-    // context.dispatch("userStoryMap/startObservingUserStoryMap", {
-    //   userStoryMapId: userStoryMapDocument.id
-    // });
   } catch (error) {
     console.error(error);
     Vue.toasted.error(
