@@ -1,6 +1,6 @@
 import Vue from "vue";
 import { firestore } from "@/Firebase";
-import UserStoryMap from "@/domain/UserStoryMap";
+import UserStoryMapDocument from "@/domain/UserStoryMapDocument";
 
 const retrieveUserStoryMapsAsync = async context => {
   const { uid } = context.rootState.common.user;
@@ -13,7 +13,7 @@ const retrieveUserStoryMapsAsync = async context => {
     querySnapshot.forEach(doc => {
       const data = doc.data();
       const id = doc.id;
-      userStoryMaps.push(new UserStoryMap(id, data));
+      userStoryMaps.push(new UserStoryMapDocument(id, data));
     });
     context.commit("setUserStoryMaps", { userStoryMaps });
   } catch (error) {
