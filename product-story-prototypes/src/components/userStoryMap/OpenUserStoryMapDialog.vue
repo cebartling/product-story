@@ -31,7 +31,14 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="secondary" flat @click="onClickCancel"> Cancel </v-btn>
-        <v-btn color="primary" flat @click="onClickOpen"> Open </v-btn>
+        <v-btn
+          color="primary"
+          flat
+          @click="onClickOpen"
+          :disabled="selectedMap === undefined"
+        >
+          Open
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -62,12 +69,14 @@ export default {
   },
   methods: {
     onClickCancel: function() {
+      this.selectedMap = undefined;
       this.$emit("update:openDialog", false);
     },
     onClickOpen: function() {
       this.$store.commit("userStoryMap/setSelectedUserStoryMap", {
         selectedUserStoryMap: this.selectedMap
       });
+      this.selectedMap = undefined;
       this.$emit("update:openDialog", false);
     }
   }

@@ -1,5 +1,6 @@
 import signInWithGoogleAsync from "@/vuex/actions/common/SignInWithGoogleAsync";
 import signOffAsync from "@/vuex/actions/common/SignOffAsync";
+// eslint-disable-next-line max-len
 import retrieveUserAndAccessTokenFromLocalStorageAsync from "@/vuex/actions/common/RetrieveUserAndAccessTokenFromLocalStorageAsync";
 
 const namespaced = true;

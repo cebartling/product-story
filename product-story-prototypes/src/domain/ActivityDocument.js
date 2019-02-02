@@ -11,9 +11,11 @@ class ActivityDocument extends FirebaseDocument {
   }
 
   updateAttributes(data) {
-    this.activity = data.activity;
-    // this.createdAt = data.createdAt;
-    // this.updatedAt = data.updatedAt;
+    this.title = data.title;
+    this.rows = data.rows;
+    this.columns = data.columns;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
   }
 
   collectionPath() {

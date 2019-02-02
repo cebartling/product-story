@@ -3,6 +3,7 @@ import createUserStoryMapAsync from "@/vuex/actions/userStoryMap/CreateUserStory
 import retrieveUserStoryMapsAsync from "@/vuex/actions/userStoryMap/RetrieveUserStoryMapsAsync";
 import setUserStoryMapMutation from "@/vuex/mutations/userStoryMap/SetUserStoryMapsMutation";
 import setSelectedUserStoryMapMutation from "@/vuex/mutations/userStoryMap/SetSelectedUserStoryMapMutation";
+import updateActivityAsync from "@/vuex/actions/userStoryMap/UpdateActivityAsync";
 
 const namespaced = true;
 const state = {
@@ -16,7 +17,8 @@ const mutations = {
 const actions = {
   createUserStoryMap: createUserStoryMapAsync,
   createActivity: createActivityAsync,
-  retrieveUserStoryMaps: retrieveUserStoryMapsAsync
+  retrieveUserStoryMaps: retrieveUserStoryMapsAsync,
+  updateActivity: updateActivityAsync
 };
 const getters = {};
 
