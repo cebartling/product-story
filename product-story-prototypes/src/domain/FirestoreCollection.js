@@ -17,6 +17,9 @@ class FirestoreCollection {
   // eslint-disable-next-line
   materialize(queryDocumentSnapshot) {}
 
+  /**
+   *
+   */
   clear() {
     if (this.documents && this.documents.length > 0) {
       this.documents.forEach(x => {
@@ -26,10 +29,17 @@ class FirestoreCollection {
     this.documents.length = 0;
   }
 
+  /**
+   *
+   * @param document
+   */
   add(document) {
     this.documents.push(document);
   }
 
+  /**
+   *
+   */
   retrieveAll() {
     this.clear();
     try {
@@ -45,6 +55,9 @@ class FirestoreCollection {
     }
   }
 
+  /**
+   *
+   */
   startObserving() {
     this.retrieveAll();
 
@@ -61,6 +74,9 @@ class FirestoreCollection {
     }
   }
 
+  /**
+   *
+   */
   stopObserving() {
     if (this.unsubscribeFunction) {
       this.unsubscribeFunction();
