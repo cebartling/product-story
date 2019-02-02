@@ -7,6 +7,8 @@ const signOffAsync = async ({ commit }) => {
     await firebase.auth().signOut();
     commit("setUser", { user: undefined });
     commit("setAccessToken", { accessToken: undefined });
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
     router.push("/");
   } catch (error) {
     // const {code, message, credential, email} = error;

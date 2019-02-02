@@ -1,5 +1,6 @@
 import signInWithGoogleAsync from "@/vuex/actions/common/SignInWithGoogleAsync";
 import signOffAsync from "@/vuex/actions/common/SignOffAsync";
+import retrieveUserAndAccessTokenFromLocalStorageAsync from "@/vuex/actions/common/RetrieveUserAndAccessTokenFromLocalStorageAsync";
 
 const namespaced = true;
 const state = {
@@ -16,7 +17,8 @@ const mutations = {
 };
 const actions = {
   signInWithGoogle: signInWithGoogleAsync,
-  signOff: signOffAsync
+  signOff: signOffAsync,
+  retrieveUserAndAccessTokenFromLocalStorage: retrieveUserAndAccessTokenFromLocalStorageAsync
 };
 const getters = {};
 

@@ -12,6 +12,8 @@ const signInWithGoogleAsync = async ({ commit }) => {
     } = result;
     commit("setAccessToken", { accessToken });
     commit("setUser", { user });
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("accessToken", JSON.stringify(accessToken));
     router.push("/home");
   } catch (error) {
     // const {code, message, credential, email} = error;

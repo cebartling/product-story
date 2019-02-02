@@ -18,6 +18,9 @@ export default {
     AppFooter,
     AppHeader
   },
+  mounted() {
+    this.$store.dispatch("common/retrieveUserAndAccessTokenFromLocalStorage");
+  },
   data() {
     return {
       //
