@@ -19,7 +19,7 @@ class FirestoreCollection {
 
   clear() {
     if (this.documents && this.documents.length > 0) {
-      this.documents.each(x => {
+      this.documents.forEach(x => {
         x.stopObserving();
       });
     }
@@ -30,9 +30,8 @@ class FirestoreCollection {
     this.documents.push(document);
   }
 
-  startObserving() {
+  retrieveAll() {
     this.clear();
-
     try {
       this.collectionReference = firestore().collection(this.collectionPath());
       this.collectionReference.get().then(querySnapshot => {
@@ -40,14 +39,23 @@ class FirestoreCollection {
           const document = this.materialize(queryDocumentSnapshot);
           this.add(document);
         });
-        // console.info("documents length", this.documents.length);
       });
-      // this.unsubscribeFunction = this.collectionReference.onSnapshot(
-      //   querySnapshot => {
-      //     // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      //     console.info("[COLLECTION ON SNAPSHOT]", querySnapshot);
-      //   }
-      // );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  startObserving() {
+    this.retrieveAll();
+
+    try {
+      this.unsubscribeFunction = this.collectionReference.onSnapshot(
+        querySnapshot => {
+          // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+          console.info("[COLLECTION ON SNAPSHOT]", querySnapshot);
+          this.retrieveAll();
+        }
+      );
     } catch (error) {
       console.error(error);
     }
