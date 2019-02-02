@@ -34,10 +34,6 @@ class FirestoreDocument {
       this.unsubscribeFunction = this.document.onSnapshot(doc => {
         // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
         this.updateAttributes(doc.data());
-        console.info(
-          `[DOCUMENT ON SNAPSHOT] ${this.implementationClassName()}:${doc.id}`,
-          doc
-        );
       });
     } catch (error) {
       console.error(error);

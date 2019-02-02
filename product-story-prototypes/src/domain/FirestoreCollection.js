@@ -63,9 +63,9 @@ class FirestoreCollection {
 
     try {
       this.unsubscribeFunction = this.collectionReference.onSnapshot(
+        // eslint-disable-next-line no-unused-vars
         querySnapshot => {
           // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-          console.info("[COLLECTION ON SNAPSHOT]", querySnapshot);
           this.retrieveAll();
         }
       );

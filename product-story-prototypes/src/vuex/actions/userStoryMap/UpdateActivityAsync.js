@@ -3,7 +3,6 @@ import { firestore, firestoreServerTimestamp } from "@/Firebase";
 
 const updateActivityAsync = async (context, payload) => {
   try {
-    console.info(payload);
     const data = {
       columns: payload.columns,
       rows: payload.rows,
