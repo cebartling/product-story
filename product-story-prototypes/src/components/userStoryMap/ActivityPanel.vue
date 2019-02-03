@@ -1,16 +1,20 @@
 <template>
-  <v-layout row nowrap pa-2 class="activity-group">
-    <v-flex xs2 class="activity">{{ activity.title }}</v-flex>
-    <StoryGridSelector :activity="activity"></StoryGridSelector>
+  <v-layout column pa-2 class="activity-group">
+    <v-layout row nowrap pa-2>
+      <v-flex xs3 class="activity">{{ activity.title }}</v-flex>
+      <StoryGridSelector :activity="activity"></StoryGridSelector>
+    </v-layout>
+    <UserStoriesGrid :activity="activity"></UserStoriesGrid>
   </v-layout>
 </template>
 
 <script>
 import StoryGridSelector from "@/components/userStoryMap/StoryGridSelector";
+import UserStoriesGrid from "@/components/userStoryMap/UserStoriesGrid";
 
 export default {
   name: "ActivityPanel",
-  components: { StoryGridSelector },
+  components: { UserStoriesGrid, StoryGridSelector },
   data() {
     return {};
   },

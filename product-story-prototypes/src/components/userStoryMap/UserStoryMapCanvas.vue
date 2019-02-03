@@ -11,11 +11,14 @@
 
 <script>
 import ActivityPanel from "@/components/userStoryMap/ActivityPanel";
-import Toolbar from "./Toolbar";
+import Toolbar from "@/components/userStoryMap/Toolbar";
 
 export default {
   name: "UserStoryMapCanvas",
-  components: { Toolbar, ActivityPanel },
+  components: {
+    Toolbar,
+    ActivityPanel
+  },
   computed: {
     activities: {
       get: function() {
