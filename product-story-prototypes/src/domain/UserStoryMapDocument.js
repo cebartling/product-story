@@ -1,6 +1,6 @@
 import store from "@/vuex/store";
 import FirestoreDocument from "@/domain/FirestoreDocument";
-import ActivitiesCollection from "@/domain/UserStoriesCollection";
+import ActivitiesCollection from "@/domain/ActivitiesCollection";
 
 class UserStoryMapDocument extends FirestoreDocument {
   constructor(id, data) {
