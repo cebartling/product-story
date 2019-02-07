@@ -1,19 +1,17 @@
 import store from "@/vuex/store";
 import FirestoreDocument from "@/domain/FirestoreDocument";
 
-class ActivityDocument extends FirestoreDocument {
-  constructor(userStoryMapDocument, id, data) {
+class UserStoryDocument extends FirestoreDocument {
+  constructor(activityDocument, id, data) {
     super();
-    this.userStoryMapDocument = userStoryMapDocument;
     this.id = id;
+    this.activityDocument = activityDocument;
     this.updateAttributes(data);
     this.startObserving();
   }
 
   updateAttributes(data) {
     this.title = data.title;
-    this.rows = data.rows;
-    this.columns = data.columns;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
   }
@@ -21,8 +19,8 @@ class ActivityDocument extends FirestoreDocument {
   collectionPath() {
     const { uid } = store.state.common.user;
     return `users/${uid}/userStoryMaps/${
-      this.userStoryMapDocument.id
-    }/activities`;
+      this.activityDocument.userStoryMapDocument.id
+    }/activities/${this.activityDocument.id}/userStories`;
   }
 
   documentId() {
@@ -30,8 +28,8 @@ class ActivityDocument extends FirestoreDocument {
   }
 
   implementationClassName() {
-    return "ActivityDocument";
+    return "UserStoryDocument";
   }
 }
 
-export default ActivityDocument;
+export default UserStoryDocument;

@@ -11,7 +11,7 @@ const updateActivityAsync = async (context, payload) => {
     const { uid } = context.rootState.common.user;
 
     const collectionPath = `users/${uid}/userStoryMaps/${
-      payload.activityDocument.parentUserStoryMap.id
+      payload.activityDocument.userStoryMapDocument.id
     }/activities`;
 
     await firestore().runTransaction(transaction => {

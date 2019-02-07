@@ -3,20 +3,22 @@ import FirestoreCollection from "@/domain/FirestoreCollection";
 import ActivityDocument from "@/domain/ActivityDocument";
 
 class ActivitiesCollection extends FirestoreCollection {
-  constructor(userStoryMap) {
+  constructor(userStoryMapDocument) {
     super();
-    this.userStoryMap = userStoryMap;
+    this.userStoryMapDocument = userStoryMapDocument;
     this.startObserving();
   }
 
   collectionPath() {
     const { uid } = store.state.common.user;
-    return `users/${uid}/userStoryMaps/${this.userStoryMap.id}/activities`;
+    return `users/${uid}/userStoryMaps/${
+      this.userStoryMapDocument.id
+    }/activities`;
   }
 
   materialize(queryDocumentSnapshot) {
     return new ActivityDocument(
-      this.userStoryMap,
+      this.userStoryMapDocument,
       queryDocumentSnapshot.id,
       queryDocumentSnapshot.data()
     );
