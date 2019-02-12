@@ -3,6 +3,16 @@ import { firestore } from "@/Firebase";
 class FirestoreCollection {
   constructor() {
     this.documents = [];
+    this.collectionReference = undefined;
+  }
+
+  /**
+   * Sets the collection reference for this object.
+   */
+  setCollectionReference() {
+    if (this.collectionReference === undefined) {
+      this.collectionReference = firestore().collection(this.collectionPath());
+    }
   }
 
   /**
@@ -30,24 +40,26 @@ class FirestoreCollection {
   }
 
   /**
+   * Adds the documentData to Firestore as a Firestore Document.
    *
-   * @param document
+   * @param documentData
    */
-  add(document) {
-    this.documents.push(document);
+  add(documentData) {
+    this.setCollectionReference();
+    this.collectionReference.add(documentData);
   }
 
   /**
    *
    */
   retrieveAll() {
+    this.setCollectionReference();
     this.clear();
     try {
-      this.collectionReference = firestore().collection(this.collectionPath());
       this.collectionReference.get().then(querySnapshot => {
         querySnapshot.forEach(queryDocumentSnapshot => {
           const document = this.materialize(queryDocumentSnapshot);
-          this.add(document);
+          this.documents.push(document);
         });
       });
     } catch (error) {
@@ -59,6 +71,7 @@ class FirestoreCollection {
    *
    */
   startObserving() {
+    this.setCollectionReference();
     this.retrieveAll();
 
     try {

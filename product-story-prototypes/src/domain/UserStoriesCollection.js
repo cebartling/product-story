@@ -12,7 +12,7 @@ class UserStoriesCollection extends FirestoreCollection {
   collectionPath() {
     const { uid } = store.state.common.user;
     return `users/${uid}/userStoryMaps/${
-      this.activityDocument.userStoryMap.id
+      this.activityDocument.userStoryMapDocument.id
     }/activities/${this.activityDocument.id}/userStories`;
   }
 

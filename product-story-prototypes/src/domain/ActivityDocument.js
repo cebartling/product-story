@@ -1,5 +1,6 @@
 import store from "@/vuex/store";
 import FirestoreDocument from "@/domain/FirestoreDocument";
+import UserStoriesCollection from "@/domain/UserStoriesCollection";
 
 class ActivityDocument extends FirestoreDocument {
   constructor(userStoryMapDocument, id, data) {
@@ -8,6 +9,7 @@ class ActivityDocument extends FirestoreDocument {
     this.id = id;
     this.updateAttributes(data);
     this.startObserving();
+    this.userStoriesCollection = new UserStoriesCollection(this);
   }
 
   updateAttributes(data) {
