@@ -11,13 +11,16 @@
         :key="column"
         xs6
         class="user-story-grid-cell"
-        @click="dialogState.editorDialog = true"
+        @click="onClickGridCell(row, column)"
       >
       </v-flex>
     </v-layout>
     <v-layout>
       <UserStoryEditorDialog
         :dialog="dialogState.editorDialog"
+        :selectedRow="selectedRow"
+        :selectedColumn="selectedColumn"
+        :activity="activity"
         v-bind.sync="dialogState"
       ></UserStoryEditorDialog>
     </v-layout>
@@ -35,10 +38,19 @@ export default {
   props: ["activity"],
   data() {
     return {
+      selectedRow: undefined,
+      selectedColumn: undefined,
       dialogState: {
         editorDialog: false
       }
     };
+  },
+  methods: {
+    onClickGridCell(row, column) {
+      this.selectedRow = row;
+      this.selectedColumn = column;
+      this.dialogState.editorDialog = true;
+    }
   }
 };
 </script>

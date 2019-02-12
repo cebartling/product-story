@@ -26,7 +26,14 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="secondary" flat @click="onClickCancel"> Cancel </v-btn>
-        <v-btn color="primary" flat @click="onClickSave"> Save </v-btn>
+        <v-btn
+          color="primary"
+          flat
+          @click="onClickSave"
+          :disabled="title === undefined"
+        >
+          Save
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -36,7 +43,10 @@
 export default {
   name: "UserStoryEditorDialog",
   props: {
-    dialog: Boolean
+    dialog: Boolean,
+    selectedRow: Number,
+    selectedColumn: Number,
+    activity: Object
   },
   data() {
     return {
@@ -45,14 +55,22 @@ export default {
     };
   },
   methods: {
+    resetData: function() {
+      this.title = undefined;
+    },
     onClickCancel: function() {
       this.$emit("update:editorDialog", false);
+      this.resetData();
     },
     onClickSave: function() {
       this.$emit("update:editorDialog", false);
-      // this.$store.dispatch("userStoryMap/createUserStory", {
-      //   title: this.title
-      // });
+      this.$store.dispatch("userStoryMap/createUserStory", {
+        title: this.title,
+        selectedRow: this.selectedRow,
+        selectedColumn: this.selectedColumn,
+        activity: this.activity
+      });
+      this.resetData();
     }
   }
 };
