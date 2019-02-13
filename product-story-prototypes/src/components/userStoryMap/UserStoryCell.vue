@@ -1,9 +1,5 @@
 <template>
-  <v-flex
-    xs6
-    class="user-story-grid-cell"
-    @click="onClickGridCell()"
-  >
+  <v-flex xs6 class="user-story-grid-cell" @click="onClickGridCell()">
     {{ renderUserStory() }}
     <UserStoryEditorDialog
       :dialog="dialogState.editorDialog"
@@ -17,6 +13,7 @@
 
 <script>
 import UserStoryEditorDialog from "@/components/userStoryMap/UserStoryEditorDialog";
+import { find } from "lodash";
 
 export default {
   name: "UserStoryCell",
@@ -39,7 +36,7 @@ export default {
       let content = "";
       const document = find(
         this.activity.userStoriesCollection.documents,
-        function(doc) {
+        doc => {
           return doc.row === this.row && doc.column === this.column;
         }
       );

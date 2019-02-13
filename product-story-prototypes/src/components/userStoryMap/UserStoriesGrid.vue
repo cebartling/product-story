@@ -6,73 +6,31 @@
       :key="row"
       class="user-story-grid-row"
     >
-      <v-flex
+      <UserStoryCell
         v-for="column in activity.columns"
         :key="column"
-        xs6
-        class="user-story-grid-cell"
-        @click="onClickGridCell(row, column)"
-      >
-        {{ renderUserStory(row, column) }}
-      </v-flex>
-    </v-layout>
-    <v-layout>
-      <UserStoryEditorDialog
-        :dialog="dialogState.editorDialog"
-        :selectedRow="selectedRow"
-        :selectedColumn="selectedColumn"
+        :row="row"
+        :column="column"
         :activity="activity"
-        v-bind.sync="dialogState"
-      ></UserStoryEditorDialog>
+      >
+      </UserStoryCell>
     </v-layout>
   </v-layout>
 </template>
 
 <script>
-import UserStoryEditorDialog from "@/components/userStoryMap/UserStoryEditorDialog";
-import { find } from "lodash";
+import UserStoryCell from "./UserStoryCell";
 
 export default {
   name: "UserStoriesGrid",
   components: {
-    UserStoryEditorDialog
+    UserStoryCell
   },
-  props: ["activity"],
-  data() {
-    return {
-      selectedRow: undefined,
-      selectedColumn: undefined,
-      dialogState: {
-        editorDialog: false
-      }
-    };
-  },
-  methods: {
-    onClickGridCell(row, column) {
-      this.selectedRow = row;
-      this.selectedColumn = column;
-      this.dialogState.editorDialog = true;
-    },
-    renderUserStory(row, column) {
-      let content = "";
-      const document = find(
-        this.activity.userStoriesCollection.documents,
-        function(doc) {
-          return doc.row === row && doc.column === column;
-        }
-      );
-      if (document) {
-        content = document.title;
-      }
-      return content;
-    }
-  }
+  props: ["activity"]
 };
 </script>
 
 <style scoped lang="scss">
 .user-story-grid-row {
 }
-
-
 </style>
