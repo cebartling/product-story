@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import UserStoryCell from "./UserStoryCell";
+import UserStoryCell from "@/components/userStoryMap/UserStoryCell";
 
 export default {
   name: "UserStoriesGrid",
