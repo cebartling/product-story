@@ -12,6 +12,8 @@ class UserStoryDocument extends FirestoreDocument {
 
   updateAttributes(data) {
     this.title = data.title;
+    this.row = data.row;
+    this.column = data.column;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
   }

@@ -13,6 +13,7 @@
         class="user-story-grid-cell"
         @click="onClickGridCell(row, column)"
       >
+        {{ renderUserStory(row, column) }}
       </v-flex>
     </v-layout>
     <v-layout>
@@ -29,6 +30,7 @@
 
 <script>
 import UserStoryEditorDialog from "@/components/userStoryMap/UserStoryEditorDialog";
+import { find } from "lodash";
 
 export default {
   name: "UserStoriesGrid",
@@ -50,6 +52,19 @@ export default {
       this.selectedRow = row;
       this.selectedColumn = column;
       this.dialogState.editorDialog = true;
+    },
+    renderUserStory(row, column) {
+      let content = "";
+      const document = find(
+        this.activity.userStoriesCollection.documents,
+        function(doc) {
+          return doc.row === row && doc.column === column;
+        }
+      );
+      if (document) {
+        content = document.title;
+      }
+      return content;
     }
   }
 };
@@ -59,14 +74,5 @@ export default {
 .user-story-grid-row {
 }
 
-.user-story-grid-cell {
-  margin: 5px;
-  border-radius: 5px;
-  border: #acd3d3 0.8px dashed;
-  height: 70px;
 
-  &:hover {
-    background-color: #c3fffd;
-  }
-}
 </style>
