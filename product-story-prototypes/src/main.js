@@ -5,6 +5,9 @@ import router from "@/router";
 import store from "@/vuex/store";
 import firebase from "firebase/app";
 import "@/toasted";
+import VueDragDrop from "vue-drag-drop";
+
+Vue.use(VueDragDrop);
 
 Vue.config.productionTip = false;
 
