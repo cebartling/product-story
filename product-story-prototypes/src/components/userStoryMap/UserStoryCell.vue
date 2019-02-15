@@ -1,5 +1,6 @@
 <template>
   <drag
+    :transfer-data="{ userStory: userStory }"
     class="flex xs6 user-story-grid-cell"
     @dblclick="onClickGridCell()"
     v-if="userStory"
@@ -14,7 +15,11 @@
     ></UserStoryEditorDialog>
   </drag>
   <drop
-    class="flex xs6 user-story-grid-cell"
+    @dragenter="over = true"
+    @dragover="over = true"
+    @dragleave="over = false"
+    @drop="onDrop"
+    :class="[{ over }, 'flex', 'xs6', 'user-story-grid-cell']"
     @dblclick="onClickGridCell()"
     v-else
   >
@@ -31,13 +36,13 @@
 <script>
 import UserStoryEditorDialog from "@/components/userStoryMap/UserStoryEditorDialog";
 import { find } from "lodash";
-import { Drag } from "vue-drag-drop";
+import { Drag, Drop } from "vue-drag-drop";
 
 export default {
   name: "UserStoryCell",
   components: {
     Drag,
-    // Drop,
+    Drop,
     UserStoryEditorDialog
   },
   props: {
@@ -47,6 +52,7 @@ export default {
   },
   data() {
     return {
+      over: false,
       dialogState: {
         editorDialog: false
       }
@@ -64,6 +70,18 @@ export default {
   methods: {
     onClickGridCell() {
       this.dialogState.editorDialog = true;
+    },
+    onDrop(data) {
+      this.over = false;
+      // console.info(
+      //   `===> onDrop: row: ${this.row}, column: ${this.column}`,
+      //   data
+      // );
+      this.$store.dispatch("userStoryMap/updateUserStory", {
+        userStory: data.userStory,
+        row: this.row,
+        column: this.column
+      });
     },
     renderUserStory() {
       let content = "";
@@ -92,5 +110,10 @@ export default {
   &:hover {
     background-color: #c3fffd;
   }
+}
+
+.drop.over {
+  border-color: #00005f;
+  background: #ffc685;
 }
 </style>
