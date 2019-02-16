@@ -6,7 +6,9 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat @click="signIn" v-if="!userSignedIn">Sign In</v-btn>
+      <v-btn flat @click="signIn" v-if="!userSignedIn" class="sign-in-button"
+        >Sign In</v-btn
+      >
       <v-btn flat to="/home" v-if="userSignedIn">Home</v-btn>
       <v-menu v-if="userSignedIn">
         <v-btn flat slot="activator">
