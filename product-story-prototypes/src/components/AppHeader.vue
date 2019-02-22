@@ -11,7 +11,7 @@
       >
       <v-btn flat to="/home" v-if="userSignedIn">Home</v-btn>
       <v-menu v-if="userSignedIn">
-        <v-btn flat slot="activator">
+        <v-btn flat slot="activator" data-views-button>
           <span>Views</span>
           <v-icon dark>arrow_drop_down</v-icon>
         </v-btn>
