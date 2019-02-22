@@ -12,7 +12,7 @@ Vue.use(VueDragDrop);
 Vue.config.productionTip = false;
 
 // Initialize Firebase
-var config = {
+const config = {
   apiKey: process.env.VUE_APP_API_KEY,
   authDomain: process.env.VUE_APP_AUTH_DOMAIN,
   databaseURL: process.env.VUE_APP_DATABASE_URL,
@@ -22,8 +22,16 @@ var config = {
 };
 firebase.initializeApp(config);
 
-new Vue({
+const vueApp = new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount("#app");
+});
+
+vueApp.$mount("#app");
+
+// Add the Vue app for testability with Cypress
+if (window.Cypress) {
+  // only available during E2E tests
+  window.vueApp = vueApp;
+}

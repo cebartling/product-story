@@ -1,4 +1,8 @@
 {
   "pluginsFile": "tests/e2e/plugins/index.js",
-  "projectId": "ocowd7"
+  "projectId": "ocowd7",
+  "env": {
+    "firebase_admin_proxy": "http://localhost:7075",
+    "email": "chris.bartling@gmail.com"
+  }
 }

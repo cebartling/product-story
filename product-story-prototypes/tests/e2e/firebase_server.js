@@ -27,18 +27,22 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(morgan("dev"));
 
-app.get("/helloWorld", urlencodedParser, (req, res) => {
-  admin
-    .auth()
-    .getUserByEmail("chris.bartling@gmail.com")
-    .then(userRecord => {
-      console.log(
-        `Found the user record: ${userRecord.uid}, email address: ${
-          userRecord.email
-        }`
-      );
-    });
-  res.send("Hello world, from the Express server!");
-});
+const asyncMiddleware = fn => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+
+app.get(
+  "/user",
+  urlencodedParser,
+  asyncMiddleware(async (req, res, next) => {
+    const email = req.query.email;
+    try {
+      const user = await admin.auth().getUserByEmail(email);
+      res.json(user);
+    } catch (err) {
+      next(err);
+    }
+  })
+);
 
 app.listen(port, () => {});
