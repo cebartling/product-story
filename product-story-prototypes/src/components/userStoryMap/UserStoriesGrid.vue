@@ -26,7 +26,9 @@ export default {
   components: {
     UserStoryCell
   },
-  props: ["activity"]
+  props: {
+    activity: { type: Object, required: true }
+  }
 };
 </script>
 

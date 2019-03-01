@@ -1,6 +1,6 @@
 <template>
   <populated-cell
-    v-if="userStory"
+    v-if="isUserStoryPresent"
     :activity="activity"
     :row="row"
     :column="column"
@@ -16,6 +16,7 @@
 <script>
 import PopulatedCell from "@/components/userStoryMap/PopulatedCell";
 import AvailableCell from "@/components/userStoryMap/AvailableCell";
+import { find } from "lodash";
 
 export default {
   name: "UserStoryCell",
@@ -29,15 +30,17 @@ export default {
     column: { type: Number, required: true }
   },
   computed: {
-    userStory: {
-      get: function() {
-        if (this.activity) {
-          console.log(this.activity);
-        }
-        return find(this.activity.userStoriesCollection.documents, doc => {
-          return doc.row === this.row && doc.column === this.column;
-        });
+    isUserStoryPresent() {
+      let result = false;
+      if (this.activity.userStoriesCollection.documents.length > 0) {
+        result = find(
+          this.activity.userStoriesCollection.documents,
+          document => {
+            return document.row === this.row && document.column === this.column;
+          }
+        );
       }
+      return result;
     }
   }
 };
