@@ -4,9 +4,12 @@
     @dragover="over = true"
     @dragleave="over = false"
     @drop="onDrop"
-    :class="[{ over }, 'flex', 'xs6', 'user-story-grid-cell']"
-    @dblclick="onDoubleClickGridCell"
+    :class="[{ over }, 'flex', 'xs6']"
   >
+    <div
+      class="available-user-story-grid-cell"
+      @dblclick="onDoubleClickGridCell"
+    ></div>
     <UserStoryEditorDialog
       :dialog="dialogState.editorDialog"
       :selectedRow="row"
@@ -19,7 +22,6 @@
 
 <script>
 import UserStoryEditorDialog from "@/components/userStoryMap/UserStoryEditorDialog";
-import { find } from "lodash";
 import { Drop } from "vue-drag-drop";
 
 export default {
@@ -41,15 +43,6 @@ export default {
       }
     };
   },
-  computed: {
-    userStory: {
-      get: function() {
-        return find(this.activity.userStoriesCollection.documents, doc => {
-          return doc.row === this.row && doc.column === this.column;
-        });
-      }
-    }
-  },
   methods: {
     onDoubleClickGridCell() {
       this.dialogState.editorDialog = true;
@@ -69,13 +62,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.user-story-grid-cell {
-  margin: 5px;
+.available-user-story-grid-cell {
   height: 70px;
+  border-radius: 5px;
+  border: #acd3d3 0.8px dashed;
 
   &:hover {
-    border-radius: 5px;
-    border: #acd3d3 0.8px dashed;
     background-color: #c3fffd;
   }
 }

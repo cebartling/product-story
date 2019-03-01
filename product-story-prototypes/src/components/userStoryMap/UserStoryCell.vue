@@ -31,6 +31,9 @@ export default {
   computed: {
     userStory: {
       get: function() {
+        if (this.activity) {
+          console.log(this.activity);
+        }
         return find(this.activity.userStoriesCollection.documents, doc => {
           return doc.row === this.row && doc.column === this.column;
         });

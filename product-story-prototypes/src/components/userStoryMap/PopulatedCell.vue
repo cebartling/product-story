@@ -1,11 +1,8 @@
 <template>
-  <drag
-    :transfer-data="{ userStory }"
-    class="flex xs6 user-story-grid-cell"
-    @click="onClickGridCell"
-    v-if="userStory"
-  >
-    {{ renderUserStory() }}
+  <drag :transfer-data="{ userStory }" class="flex xs6" v-if="userStory">
+    <div class="user-story-grid-cell" @dblclick="onDoubleClickGridCell">
+      {{ renderUserStory() }}
+    </div>
     <UserStoryEditorDialog
       :dialog="dialogState.editorDialog"
       :selectedRow="row"
@@ -42,6 +39,7 @@ export default {
   computed: {
     userStory: {
       get: function() {
+        // console.info(this.activity);
         return find(this.activity.userStoriesCollection.documents, doc => {
           return doc.row === this.row && doc.column === this.column;
         });
@@ -49,17 +47,12 @@ export default {
     }
   },
   methods: {
-    onClickGridCell() {
+    onDoubleClickGridCell() {
       this.dialogState.editorDialog = true;
     },
     renderUserStory() {
       let content = "";
-      const document = find(
-        this.activity.userStoriesCollection.documents,
-        doc => {
-          return doc.row === this.row && doc.column === this.column;
-        }
-      );
+      const document = this.userStory;
       if (document) {
         content = document.title;
       }
