@@ -47,6 +47,7 @@ export default {
   methods: {
     onClickCancel: function() {
       this.dialog = false;
+      this.activity = undefined;
     },
     onClickSave: function() {
       this.dialog = false;
@@ -54,6 +55,7 @@ export default {
         userStoryMapId: this.$store.state.userStoryMap.selectedUserStoryMap.id,
         activity: this.activity
       });
+      this.activity = undefined;
     }
   }
 };

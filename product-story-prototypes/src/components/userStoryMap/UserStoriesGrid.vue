@@ -8,7 +8,7 @@
     >
       <UserStoryCell
         v-for="column in activity.columns"
-        :key="column"
+        :key="`R${row}-C${column}`"
         :row="row"
         :column="column"
         :activity="activity"

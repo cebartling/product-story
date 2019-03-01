@@ -17,6 +17,15 @@
                 ></v-text-field>
               </v-flex>
             </v-layout>
+            <v-layout>
+              <v-flex xs12 md12>
+                <v-text-field
+                  v-model="description"
+                  label="Description"
+                  required
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
           </v-container>
         </v-form>
       </v-card-text>
@@ -41,7 +50,8 @@ export default {
   data() {
     return {
       valid: false,
-      name: undefined
+      name: undefined,
+      description: undefined
     };
   },
   methods: {
@@ -51,7 +61,8 @@ export default {
     onClickSave: function() {
       this.$emit("update:createDialog", false);
       this.$store.dispatch("userStoryMap/createUserStoryMap", {
-        name: this.name
+        name: this.name,
+        description: this.description
       });
     }
   }
