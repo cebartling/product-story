@@ -65,12 +65,13 @@ export default {
 
 <style scoped lang="scss">
 .user-story-grid-cell {
-  border: #acd3d3 0.8px solid;
+  border: #eaead2 0.8px solid;
   background-color: beige;
   height: 70px;
   padding: 4px;
 
   &:hover {
+    border: #baf3f1 1px solid;
     background-color: #c3fffd;
   }
 }
