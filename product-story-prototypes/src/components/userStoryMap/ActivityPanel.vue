@@ -9,12 +9,15 @@
 </template>
 
 <script>
-import StoryGridSelector from "@/components/userStoryMap/StoryGridSelector";
-import UserStoriesGrid from "@/components/userStoryMap/UserStoriesGrid";
+import StoryGridSelector from "@/components/userStoryMap/StoryGridSelector.vue";
+import UserStoriesGrid from "@/components/userStoryMap/UserStoriesGrid.vue";
 
 export default {
   name: "ActivityPanel",
-  components: { UserStoriesGrid, StoryGridSelector },
+  components: {
+    UserStoriesGrid,
+    StoryGridSelector
+  },
   data() {
     return {};
   },
@@ -25,21 +28,19 @@ export default {
 
 <style scoped lang="scss">
 .activity-group {
-  background-color: #edeeed;
-  border: #ececee 1.1px solid;
-  border-radius: 5px;
-}
+  .activity {
+    border: solid 0.8px #fbc083;
+    height: 60px;
+    text-align: left;
+    vertical-align: middle;
+    background-color: #ffe4c4;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #464646;
 
-.activity {
-  border: dashed 0.5px #a6a2a6;
-  height: 60px;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 5px;
-  background-color: #ffe4c4;
-
-  &:hover {
-    background-color: #ffc685;
+    &:hover {
+      background-color: #ffc685;
+    }
   }
 }
 </style>

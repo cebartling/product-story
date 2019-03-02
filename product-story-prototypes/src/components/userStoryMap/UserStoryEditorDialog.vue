@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" width="500">
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
-        Create User Story
+        {{ dialogTitle }}
       </v-card-title>
 
       <v-card-text>
@@ -43,34 +43,40 @@
 export default {
   name: "UserStoryEditorDialog",
   props: {
-    dialog: Boolean,
-    selectedRow: Number,
-    selectedColumn: Number,
-    activity: Object
+    dialog: { type: Boolean, required: true },
+    selectedRow: { type: Number, required: true },
+    selectedColumn: { type: Number, required: true },
+    activity: { type: Object, required: true },
+    userStory: { type: Object, required: false },
+    dialogTitle: { type: String, required: true }
   },
   data() {
     return {
-      valid: false,
-      title: undefined
+      valid: !!this.userStory,
+      title: this.userStory ? this.userStory.title : undefined
     };
   },
   methods: {
-    resetData: function() {
-      this.title = undefined;
-    },
     onClickCancel: function() {
       this.$emit("update:editorDialog", false);
-      this.resetData();
     },
     onClickSave: function() {
       this.$emit("update:editorDialog", false);
-      this.$store.dispatch("userStoryMap/createUserStory", {
-        title: this.title,
-        selectedRow: this.selectedRow,
-        selectedColumn: this.selectedColumn,
-        activity: this.activity
-      });
-      this.resetData();
+      if (this.userStory) {
+        this.$store.dispatch("userStoryMap/updateUserStory", {
+          title: this.title,
+          selectedRow: this.selectedRow,
+          selectedColumn: this.selectedColumn,
+          userStory: this.userStory
+        });
+      } else {
+        this.$store.dispatch("userStoryMap/createUserStory", {
+          title: this.title,
+          selectedRow: this.selectedRow,
+          selectedColumn: this.selectedColumn,
+          activity: this.activity
+        });
+      }
     }
   }
 };

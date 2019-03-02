@@ -4,10 +4,13 @@ import { firestore, firestoreServerTimestamp } from "@/Firebase";
 const updateUserStoryAsync = async (context, payload) => {
   try {
     const data = {
-      column: payload.column,
-      row: payload.row,
+      column: payload.selectedColumn,
+      row: payload.selectedRow,
       updatedAt: firestoreServerTimestamp()
     };
+    if (payload.title) {
+      data.title = payload.title;
+    }
     await firestore().runTransaction(transaction => {
       const collectionRef = firestore().collection(
         payload.userStory.collectionPath()

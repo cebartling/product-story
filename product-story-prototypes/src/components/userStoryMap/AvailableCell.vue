@@ -10,13 +10,14 @@
       class="available-user-story-grid-cell"
       @dblclick="onDoubleClickGridCell"
     ></div>
-    <UserStoryEditorDialog
+    <user-story-editor-dialog
+      dialogTitle="Create user story"
       :dialog="dialogState.editorDialog"
       :selectedRow="row"
       :selectedColumn="column"
       :activity="activity"
       v-bind.sync="dialogState"
-    ></UserStoryEditorDialog>
+    ></user-story-editor-dialog>
   </drop>
 </template>
 
@@ -52,8 +53,8 @@ export default {
       if (data) {
         this.$store.dispatch("userStoryMap/updateUserStory", {
           userStory: data.userStory,
-          row: this.row,
-          column: this.column
+          selectedRow: this.row,
+          selectedColumn: this.column
         });
       }
     }
@@ -64,7 +65,6 @@ export default {
 <style scoped lang="scss">
 .available-user-story-grid-cell {
   height: 70px;
-  border-radius: 5px;
   border: #acd3d3 0.8px dashed;
 
   &:hover {

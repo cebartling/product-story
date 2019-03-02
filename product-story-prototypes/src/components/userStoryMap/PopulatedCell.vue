@@ -4,10 +4,12 @@
       {{ renderUserStory() }}
     </div>
     <UserStoryEditorDialog
+      dialogTitle="Edit user story"
       :dialog="dialogState.editorDialog"
       :selectedRow="row"
       :selectedColumn="column"
       :activity="activity"
+      :userStory="userStory"
       v-bind.sync="dialogState"
     ></UserStoryEditorDialog>
   </drag>
@@ -39,7 +41,6 @@ export default {
   computed: {
     userStory: {
       get: function() {
-        // console.info(this.activity);
         return find(this.activity.userStoriesCollection.documents, doc => {
           return doc.row === this.row && doc.column === this.column;
         });
@@ -64,8 +65,8 @@ export default {
 
 <style scoped lang="scss">
 .user-story-grid-cell {
-  border-radius: 5px;
   border: #acd3d3 0.8px solid;
+  background-color: beige;
   height: 70px;
   padding: 4px;
 
